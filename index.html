@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="ru" class="js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Идеи для улучшения SeaGirls</title>
+<meta name="description" content="Презентация для Ксении: главный вывод, четыре находки, быстрые победы, новая структура главной и что нужно решить.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500;600&family=Golos+Text:wght@400;500;600;700&family=PT+Mono&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:"Disruptors Script";src:url("fonts/DisruptorsScript.woff") format("woff");font-weight:400;font-style:normal;font-display:swap}
+:root{
+  --bg:#FFFFFF; --surface:#FFFFFF; --surface-2:#FFFFFF;
+  --ink:#1B1512; --muted:#6E635D; --line:#E7DFDA; --line-strong:#D3C7C0;
+  --red:#E92121; --red-ink:#B81616; --good:#2E7D5B; --amber:#CF5A1C;
+  --display:"Cormorant",Georgia,serif;
+  --body:"Golos Text","Helvetica Neue",Arial,sans-serif;
+  --mono:"PT Mono","Courier New",monospace;
+  --maxw:1180px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#16110F; --surface:#1F1917; --surface-2:#282120;
+    --ink:#F5EFEC; --muted:#A99E98; --line:#322A27; --line-strong:#463B37;
+    --red:#FF4040; --red-ink:#FF6A6A; --good:#5FC095; --amber:#E8763A;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16110F; --surface:#1F1917; --surface-2:#282120;
+  --ink:#F5EFEC; --muted:#A99E98; --line:#322A27; --line-strong:#463B37;
+  --red:#FF4040; --red-ink:#FF6A6A; --good:#5FC095; --amber:#E8763A;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--red-ink)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:24px}
+@media (max-width:560px){.wrap{padding-inline:18px}}
+
+/* cover — one-to-one with the Figma frame "01 — Обложка" (1512 grid) */
+.cover{background:#fff;color:#fff;margin-bottom:24px}
+.cover .hero{position:relative;aspect-ratio:2/1;background:#9fb6c9 url("img/hero.jpg") center/cover no-repeat;overflow:hidden}
+.cover .hero::after{content:"";position:absolute;inset:0;border:5px solid var(--red);pointer-events:none}
+.cover .logo{position:absolute;top:4%;left:50%;transform:translateX(-50%);text-align:center;line-height:1;white-space:nowrap}
+.cover .logo b{display:block;font-family:var(--body);font-weight:700;font-size:clamp(20px,2.78vw,42px);letter-spacing:.01em}
+.cover .logo i{display:block;font-family:"Disruptors Script",cursive;font-style:normal;font-weight:400;font-size:clamp(36px,5.16vw,78px);line-height:.56;margin-top:-.18em}
+.cover .title{position:absolute;left:50%;top:25.1%;transform:translateX(-50%);width:46.7%;min-width:280px;text-align:center}
+.cover h1{font-family:var(--display);font-weight:600;font-size:clamp(34px,6.61vw,100px);line-height:.78;letter-spacing:-.02em;text-transform:uppercase;color:#fe0001;margin:0}
+.cover .accent{font-family:"Disruptors Script",cursive;font-size:clamp(40px,8.33vw,126px);line-height:.42;margin:.04em 0 0;color:#fff}
+/* кнопка «вниз»: чистый CSS, переносится в Tilda как есть (Zero Block → hover, или блок T123) */
+.cover .down{position:absolute;left:50%;bottom:5px;transform:translateX(-50%);width:60px;height:50px;background:var(--red);display:grid;place-items:center;color:#fff;text-decoration:none;overflow:hidden;transition:width .35s cubic-bezier(.2,.8,.2,1),height .35s cubic-bezier(.2,.8,.2,1),bottom .35s cubic-bezier(.2,.8,.2,1)}
+.cover .down svg{animation:sg-bob 1.6s ease-in-out 1.1s 3;transition:transform .35s}
+.cover .down:hover,.cover .down:focus-visible{width:150px;height:74px;bottom:0}
+.cover .down:hover svg,.cover .down:focus-visible svg{animation:none}
+@keyframes sg-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+@media (prefers-reduced-motion: reduce){.cover .down svg{animation:none}.cover .down,.cover .down svg{transition:none}}
+
+/* sections */
+section{padding-block:64px}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);font-weight:600;margin:0 0 14px}
+h2{font-family:var(--display);font-weight:500;font-size:clamp(34px,4.4vw,58px);line-height:.98;letter-spacing:-.005em;margin:0 0 32px;text-wrap:balance}
+.secintro{color:var(--muted);max-width:66ch;margin:-14px 0 32px;font-size:17px}
+.slidenum{font-family:var(--body);font-size:12px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px}
+
+/* slide 2 — why */
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px;align-items:start}
+.why .q{font-family:var(--display);font-size:clamp(28px,3.4vw,44px);line-height:1;font-weight:500;margin:0;text-wrap:balance}
+.why .q b{color:var(--red);font-weight:500}
+.did{padding-top:18px;font-size:16px;color:var(--ink)}
+.did dt{font-family:var(--mono);font-size:14px;letter-spacing:0;text-transform:lowercase;font-weight:400;color:var(--muted);margin-top:14px}
+.did dd{margin:0}
+.assume{margin-top:22px;padding:14px 16px;border-left:3px solid var(--amber);background:var(--surface);font-size:14px;color:var(--muted)}
+
+/* slide 3 — thesis + map */
+.thesis blockquote{margin:0;font-family:var(--display);font-weight:500;font-size:clamp(30px,4.6vw,56px);line-height:1.15;max-width:22ch}
+.thesis blockquote b{font-weight:500;color:var(--red);font-style:italic}
+.mapgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:48px;margin-top:44px;align-items:start}
+@media (max-width:820px){.mapgrid{grid-template-columns:1fr}}
+.stats{display:flex;flex-direction:column}
+.stat{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:14px 0;border-top:1px solid var(--line)}
+.stat .n{font-family:var(--display);font-size:40px;line-height:1;color:var(--red);font-weight:500;font-variant-numeric:tabular-nums}
+.stat .c{font-size:14px;color:var(--muted);line-height:1.45;align-self:center}
+.pagebar{display:grid;grid-template-columns:44px 110px 1fr;gap:0 18px;align-items:start}
+.pb-ticks{display:flex;flex-direction:column;justify-content:space-between;height:var(--h);font-size:11px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.pb-col{position:relative;height:var(--h)}
+.pb-col .seg{position:absolute;left:0;width:100%;border-radius:1px}
+.seg.path{background:var(--ink)} .seg.after{background:var(--line-strong)} .seg.noise{background:var(--red)}
+.pb-notes{position:relative;height:var(--h)}
+.pb-notes .note{position:absolute;left:0;padding-left:16px;border-left:1px solid var(--line-strong);font-size:12px;line-height:1.35;color:var(--muted);max-width:260px}
+.pb-notes .note b{display:block;font-size:13px;color:var(--ink)}
+.pb-notes .note.hot b{color:var(--red)}
+.pb-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:right;margin-bottom:8px;grid-column:1}
+
+/* findings */
+.finding{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:56px;align-items:start}
+@media (max-width:860px){.finding{grid-template-columns:1fr}}
+.shot{background:var(--surface);position:relative;overflow:hidden}
+.shotimg{position:relative}.shot img{width:100%;height:auto}
+.shot .mark{position:absolute;border:3px solid var(--red);border-radius:3px;pointer-events:none}
+.shot .tag{position:absolute;background:var(--red);color:#fff;font-size:11px;font-weight:700;letter-spacing:.06em;padding:3px 7px;border-radius:2px;text-transform:uppercase;white-space:nowrap}
+.shot figcaption{font-size:12px;color:var(--muted);padding:8px 0}
+.fbody h2{font-size:clamp(28px,3.4vw,44px);margin-bottom:0}
+/* как блок «что сделала / чего не было» на слайде 02: подпись сверху, текст под ней */
+.fgrid{display:block;margin-top:26px;padding-top:4px;font-size:16px;color:var(--ink)}
+.frow{display:block;padding:0}
+.frow dt{font-family:var(--mono);font-size:14px;letter-spacing:0;text-transform:lowercase;font-weight:400;color:var(--muted);margin-top:14px}
+.frow dd{margin:0;color:var(--ink)}
+.frow dd ul{margin:0;padding-left:18px}
+.frow dd li{margin-bottom:4px}
+.frow dd li:last-child{margin-bottom:0}
+
+/* quick wins */
+.wins{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.win{background:var(--surface);padding:18px 20px}
+.win b{display:block;font-size:15px;margin-bottom:5px}
+.win span{font-size:14px;color:var(--muted);line-height:1.5}
+.win .eff{display:inline-block;margin-top:10px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--good)}
+
+/* keep */
+.keeplist{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.keepitem{padding:16px 18px;background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--good)}
+.keepitem b{display:block;font-size:15px;margin-bottom:5px}
+.keepitem span{font-size:14px;color:var(--muted);line-height:1.5}
+
+/* before / after */
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px}
+@media (max-width:760px){.ba{grid-template-columns:1fr}}
+.ba h3{font-family:var(--body);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
+.ba h3 b{color:var(--ink)}
+.ba ol{margin:0;padding:0;list-style:none;counter-reset:b}
+.ba li{counter-increment:b;display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+.ba li::before{content:counter(b,decimal-leading-zero);font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.ba li .scr{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ba li.hot{color:var(--red);font-weight:600}
+.ba li.new{font-weight:600}
+.ba li.new::after{content:"новое";grid-column:2;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--good);font-weight:700}
+.ba li.up::after{content:"поднято";grid-column:2;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);font-weight:700}
+.ba li.out{color:var(--muted);text-decoration:line-through}
+.ba .total{margin-top:12px;font-family:var(--display);font-size:28px}
+.ba .total b{color:var(--red);font-weight:500}
+
+/* plan */
+.waves{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.wave{background:var(--surface);padding:20px;display:grid;grid-template-columns:52px 1fr auto;gap:18px;align-items:start}
+.wave .n{font-family:var(--display);font-size:34px;line-height:1;color:var(--red);font-weight:500}
+.wave b{font-size:16px;display:block;margin-bottom:4px}
+.wave p{margin:0;font-size:14px;color:var(--muted)}
+.wave .measure{margin-top:8px;font-size:13px;color:var(--ink)}
+.wave .measure::before{content:"Замеряем: ";font-weight:700;color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.wave .when{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;white-space:nowrap}
+@media (max-width:600px){.wave{grid-template-columns:52px 1fr}.wave .when{grid-column:2}}
+
+/* ask */
+.ask{background:var(--surface-2)}
+.asklist{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+.askitem{background:var(--surface);border:1px solid var(--line);padding:20px}
+.askitem .k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--red);margin-bottom:8px}
+.askitem b{display:block;font-size:16px;margin-bottom:6px}
+.askitem span{font-size:14px;color:var(--muted);line-height:1.5}
+
+/* appendix */
+.appx table{width:100%;border-collapse:collapse;font-size:14px}
+.appx th,.appx td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.appx th{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.appx td:first-child{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
+.sev{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.s1{background:var(--red)}.s2{background:var(--amber)}.s3{background:var(--line-strong)}
+.tblwrap{overflow-x:auto}
+.appx p{color:var(--muted);max-width:72ch;font-size:15px}
+/* ---- визуальная система из рефов: белые плитки с красной обводкой, как карточки туров на сайте ---- */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:14px}
+.tile{background:var(--surface);border:1.5px solid var(--red);padding:16px 16px 14px}
+.tile .n{font-family:var(--display);font-weight:500;font-size:clamp(30px,3vw,42px);white-space:nowrap;line-height:1;color:var(--red);font-variant-numeric:tabular-nums;display:block}
+.tile .c{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);font-weight:600;line-height:1.35;margin-top:8px;display:block}
+
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:32px}
+.toc a{display:flex;flex-direction:column;justify-content:space-between;min-height:172px;padding:16px;background:var(--surface);border:1.5px solid var(--red);text-decoration:none;color:var(--ink);transition:background .2s,color .2s}
+.toc a:hover,.toc a:focus-visible{background:var(--red);color:#fff}
+.toc .k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--red)}
+.toc a:hover .k,.toc a:focus-visible .k{color:#fff}
+.toc .t{font-family:var(--display);font-size:22px;line-height:1.02;font-weight:500;margin-top:10px;text-wrap:balance}
+.toc .arr{align-self:flex-end;width:26px;height:26px;border:1.5px solid currentColor;border-radius:50%;display:grid;place-items:center;font-size:14px;margin-top:14px}
+@media (prefers-reduced-motion: reduce){.toc a{transition:none}}
+
+.pills{display:inline-flex;flex-wrap:wrap;gap:6px;vertical-align:middle;margin:2px 0}
+.pill{border:1.5px solid var(--red);color:var(--red);font-size:12px;font-weight:600;letter-spacing:.04em;padding:2px 10px;border-radius:999px;white-space:nowrap;line-height:1.5}
+
+.wins{gap:12px;background:none;border:0}
+.win{border:1.5px solid var(--red)}
+
+.batable{margin-top:0;border:1.5px solid var(--red);background:var(--surface)}
+.batable .hd,.batable .row{display:grid;grid-template-columns:1fr 44px 1fr;align-items:center}
+.batable .hd{border-bottom:1.5px solid var(--red);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.batable .hd>div{padding:12px 18px}
+.batable .hd .arrow{text-align:center;color:var(--red);font-size:16px;padding:0}
+.batable .row{border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.4}
+.batable .row:last-child{border-bottom:0}
+.batable .row>div{padding:12px 18px}
+.batable .was{color:var(--muted)}
+.batable .was::before{content:"✕";margin-right:8px;font-weight:700}
+.batable .now{font-weight:600}
+.batable .now::before{content:"✓";color:var(--red);margin-right:8px;font-weight:700}
+.batable .row .mid{text-align:center;color:var(--line-strong);padding:0}
+.batable .row.same .was,.batable .row.same .now{font-weight:400;color:var(--muted)}
+.batable .row.same .was::before,.batable .row.same .now::before{content:"=";color:var(--line-strong)}
+.batotals{display:grid;grid-template-columns:1fr 44px 1fr;gap:0;margin-top:14px}
+.batotals div{font-family:var(--display);font-size:clamp(22px,2.6vw,30px);line-height:1.1;padding:0 18px}
+.batotals b{color:var(--red);font-weight:500}
+@media (max-width:640px){.batable .hd,.batable .row,.batotals{grid-template-columns:1fr}.batable .hd .arrow,.batable .row .mid,.batotals .mid{display:none}.batable .row .was{border-bottom:1px dashed var(--line)}}
+
+.waves{grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;background:none;border:0}
+.wave{border:1.5px solid var(--red);display:block;padding:22px}
+.wave .step{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--red)}
+.wave .n{font-size:clamp(46px,5.2vw,76px);display:block;margin:6px 0 14px;font-weight:500;line-height:1}
+.wave .n small{font-size:.42em;letter-spacing:.02em}
+
+footer{padding-block:48px;color:var(--muted);font-size:14px}
+footer p{margin:0 0 6px;max-width:70ch}
+
+/* контакты в конце */
+.contact{padding-block:40px 96px}
+.contact .eyebrow{margin-bottom:4px}
+.contact .name{font-size:clamp(28px,3.2vw,40px);margin-bottom:24px}
+.contact .row{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border:1.5px solid var(--red);color:var(--red);text-decoration:none;font-weight:600;font-size:15px;letter-spacing:.02em;transition:background .2s,color .2s}
+.btn:hover,.btn:focus-visible{background:var(--red);color:#fff}
+@media (prefers-reduced-motion: reduce){.btn{transition:none}}
+
+/* ---- мобильная версия ---- */
+@media (max-width:640px){
+  section{padding-block:44px}
+  h2{margin-bottom:24px}
+  .secintro{margin:-8px 0 24px;font-size:16px}
+  .finding{gap:28px}
+  .shot .tag{white-space:normal;max-width:70%;line-height:1.3}
+  .fgrid{margin-top:18px}
+  .toc{grid-template-columns:1fr 1fr;gap:10px}
+  .toc a{min-height:140px;padding:14px}
+  .toc .t{font-size:19px}
+  .batable .row>div,.batable .hd>div{padding:10px 14px}
+  .batotals div{padding:0 14px;font-size:20px}
+  .wave{padding:18px}
+  .wave .n{font-size:44px}
+  .contact{padding-block:24px 64px}
+  .btn{width:100%;justify-content:center}
+  .cover .hero{aspect-ratio:375/616;background-image:url("img/hero-mobile.jpg")}
+  .cover .logo{top:5%}
+  .cover .title{top:24%;width:86%;min-width:0}
+  .cover h1{font-size:clamp(40px,11.5vw,54px)}
+  .cover .accent{font-size:clamp(44px,14vw,66px)}
+  .cover .down{bottom:16px}
+  .cover{margin-bottom:40px}
+}
+@media (max-width:420px){.toc{grid-template-columns:1fr}}
+
+/* ---------- анимация: одна система появления ---------- */
+:root{--ease:cubic-bezier(.05,.7,.1,1)}
+html.js .reveal{opacity:0;transition:opacity .35s var(--ease),transform .35s var(--ease);transition-delay:var(--d,0ms)}
+html.js .reveal.up{transform:translateY(18px)}
+html.js .reveal.left{transform:translateX(-24px)}
+html.js .reveal.scale{transform:scale(.9)}
+html.js .reveal.down{transform:translateY(-10px)}
+html.js .reveal.in{opacity:1;transform:none}
+/* обложка: сцена при загрузке */
+html.js .cover .hero{animation:sg-photo 1s var(--ease) both}
+html.js .cover .hero::after{animation:sg-fade .5s var(--ease) both}
+html.js .cover .logo{animation:sg-drop .4s var(--ease) .1s both}
+html.js .cover h1 span{display:block;animation:sg-rise .4s var(--ease) both}
+html.js .cover h1 .l1{animation-delay:.2s}
+html.js .cover h1 .l2{animation-delay:.3s}
+html.js .cover .accent{animation:sg-write .5s var(--ease) .45s both}
+html.js .cover .down{animation:sg-pop .35s var(--ease) .65s both}
+@keyframes sg-photo{from{transform:scale(1.04)}to{transform:scale(1)}}
+@keyframes sg-fade{from{opacity:0}to{opacity:1}}
+@keyframes sg-drop{from{opacity:0;transform:translate(-50%,-8px)}to{opacity:1;transform:translate(-50%,0)}}
+@keyframes sg-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes sg-write{from{opacity:0;clip-path:inset(-60% 100% -60% 0)}to{opacity:1;clip-path:inset(-60% 0 -60% 0)}}
+@keyframes sg-pop{from{opacity:0;transform:translateX(-50%) scale(.6)}to{opacity:1;transform:translateX(-50%) scale(1)}}
+.cover .hero{transform-origin:center}
+/* стрелка в плитке оглавления */
+.toc .arr{transition:transform .25s var(--ease)}
+.toc a:hover .arr{transform:translateY(3px)}
+/* стрелка в шапке таблицы — один раз, когда таблица появилась */
+.batable.in .hd .arrow{animation:sg-nudge .6s var(--ease) .35s 1}
+html.js .batable .now{opacity:0;transition:opacity .35s var(--ease) .3s}
+html.js .batable.in .now{opacity:1}
+@keyframes sg-nudge{0%,100%{transform:none}50%{transform:translateX(6px)}}
+@media (prefers-reduced-motion: reduce){
+  html.js .reveal,html.js .batable .now{opacity:1;transform:none;transition:none}
+  html.js .cover .hero,html.js .cover .hero::after,html.js .cover .logo,html.js .cover h1 span,html.js .cover .accent,html.js .cover .down,.batable.in .hd .arrow{animation:none}
+}
+</style>
+</head>
+<body>
+
+<!-- 01 -->
+<header class="cover">
+  <div class="hero">
+    <div class="logo"><b>SEAGIRLS</b><i>club</i></div>
+    <div class="title">
+      <h1><span class="l1">Идеи для</span><span class="l2">улучшения</span></h1>
+      <p class="accent">UX-аудит</p>
+    </div>
+    <a class="down" href="#why" aria-label="Дальше"><svg width="20" height="10" viewBox="0 0 20 10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0l10 10L20 0"/></svg></a>
+  </div>
+</header>
+
+<!-- 02 -->
+<section id="why">
+  <div class="wrap">
+    <div class="why">
+      <div>
+        <p class="q reveal up">Чтобы девушка из Instagram доходила до заявки, <b>а не до середины страницы.</b></p>
+        <div class="assume reveal up" style="--d:200ms">Задача: удобный сайт и больше заявок.</div>
+      </div>
+      <dl class="did reveal up" style="--d:120ms">
+        <dt>Что сделала</dt><dd>Прошла сайт глазами новичка с телефона, разобрала код, посмотрела конкурентов.</dd>
+        <dt>Что внутри</dt><dd>27 находок, пять главных — подробно. Новая структура главной и план.</dd>
+      </dl>
+    </div>
+    <div class="toc">
+      <a href="#f0" class="reveal up" style="--d:0ms"><span class="k">Находка 1</span><span class="t">Сайт на телефоне часто не открывается</span><span class="arr">↓</span></a>
+      <a href="#f1" class="reveal up" style="--d:70ms"><span class="k">Находка 2</span><span class="t">Новичок не понимает, для неё ли это</span><span class="arr">↓</span></a>
+      <a href="#f2" class="reveal up" style="--d:140ms"><span class="k">Находка 3</span><span class="t">Капитаны-женщины спрятаны</span><span class="arr">↓</span></a>
+      <a href="#f3" class="reveal up" style="--d:210ms"><span class="k">Находка 4</span><span class="t">Лучший контент заперт в попапах</span><span class="arr">↓</span></a>
+      <a href="#f4" class="reveal up" style="--d:280ms"><span class="k">Находка 5</span><span class="t">Меню и ссылки не работают</span><span class="arr">↓</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section id="f0">
+  <div class="wrap">
+    <div class="finding">
+      <div>
+        <figure class="shot reveal left">
+        <div class="shotimg"><img src="img/home.jpg" alt="Первый экран сайта" width="1512" height="982"></div>
+        <figcaption>На телефоне первый экран — видео .mov с Dropbox по временной ссылке; сейчас она отдаёт 404. Ниже — 190 изображений, оригиналы весят 122 МБ.</figcaption>
+      </figure>
+              </div>
+      <div class="fbody reveal up" style="--d:120ms">
+        <h2 class="reveal up">Для нового человека сайт на телефоне часто не открывается</h2>
+        <dl class="fgrid">
+          <div class="frow"><dt>Что вижу</dt><dd>Трафик из Instagram — с телефона, часто на мобильном интернете. На мобильной версии первый экран — видео <code>.mov</code> с Dropbox по временной ссылке; сейчас она отдаёт <b>404</b>. Дальше страница тянет 190 картинок на 122 МБ. У старых посетителей всё в кэше, у новых — пустой экран и ошибка.</dd></div>
+          <div class="frow"><dt>Чего стоит</dt><dd>Человек уходит раньше, чем увидит хоть что-то. И этого не видно в статистике — он туда не успевает.</dd></div>
+          <div class="frow"><dt>Что делаем</dt><dd><ul>
+            <li>Видео — на Tilda вместо Dropbox: mp4 + webm, постер, запасная картинка.</li>
+            <li>Картинки сжать и грузить по мере прокрутки.</li>
+            <li>Замер Lighthouse на мобильном — до и после.</li>
+          </ul></dd></div>
+          <div class="frow"><dt>Что ожидаем</dt><dd>Первый экран за 2–3 секунды на 4G. Ноль «ошибок» из директа.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section id="f1">
+  <div class="wrap">
+    <div class="finding">
+      <figure class="shot reveal left">
+        <div class="shotimg"><img src="img/tabs-cards.jpg" alt="Табы направлений и карточка тура Турция, Фетхие" width="1512" height="1000"><span class="mark reveal scale" style="--d:350ms;left:23.5%;top:26.5%;width:54%;height:5.6%"></span><span class="tag reveal down" style="--d:470ms;left:79%;top:27.3%">видно 4 из 15</span></div>
+        <figcaption>Главная, второй экран: после манифеста сразу каталог. Ни слова о том, для кого это и что входит в цену.</figcaption>
+      </figure>
+      <div class="fbody reveal up" style="--d:120ms">
+        <h2 class="reveal up">Новичок не понимает, для неё ли это и какая из 15 её</h2>
+        <dl class="fgrid">
+          <div class="frow"><dt>Что вижу</dt><dd>Через полтора экрана — 15 направлений с ценами. До этого ни слова: нужен ли опыт, можно ли одной, что если не умею плавать. «Бортовые расходы входят» — а что отдельно, только в попапе.</dd></div>
+          <div class="frow"><dt>Чего стоит</dt><dd>Остаются два вопроса: «мне подойдёт?» и «какая из 15 моя?». Человек уходит думать и не возвращается.</dd></div>
+          <div class="frow"><dt>Что делаем</dt><dd><ul>
+            <li>«Первый раз? Начни с Турции» — сразу после манифеста.</li>
+            <li>Пять ответов новичку: опыт, соседка по каюте, возраст, плавание.</li>
+            <li>«Уже в цене» / «отдельно» — на виду, а не в попапе.</li>
+            <li>Таблица сравнения направлений: сложность · виза · сезон.</li>
+          </ul></dd></div>
+          <div class="frow"><dt>Что ожидаем</dt><dd>Меньше одинаковых вопросов в директе, заявки с уже выбранным направлением.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section id="f2">
+  <div class="wrap">
+    <div class="finding">
+      <figure class="shot reveal left">
+        <div class="shotimg"><img src="img/captains.jpg" alt="Блок Команда капитанов на седьмом экране" width="1512" height="720"><span class="tag reveal down" style="--d:470ms;left:3%;top:4%">7-й экран · ниже формы записи</span></div>
+        <figcaption>Главная, 5 926 px от верха: капитаны показаны уже после того, как попросили телефон.</figcaption>
+      </figure>
+      <div class="fbody reveal up" style="--d:120ms">
+        <h2 class="reveal up">Капитаны-женщины — единственное на рынке — спрятаны</h2>
+        <dl class="fgrid">
+          <div class="frow"><dt>Что вижу</dt><dd>У премиум-туров за 4 000–7 400 € капитаны мужчины, у Yacht Week — смешанные группы. Капитаны-женщины есть только у SeaGirls — и на сайте они на 7-м экране, ниже формы.</dd></div>
+          <div class="frow"><dt>Чего стоит</dt><dd>Главный ответ на страх «еду одна с незнакомыми» не участвует в решении.</dd></div>
+          <div class="frow"><dt>Что делаем</dt><dd><ul>
+            <li>Капитаны — на 2-й экран: лицо, мили, одна фраза.</li>
+            <li>Фильтр «капитан» в каталоге.</li>
+            <li>Блок капитана на странице каждого тура.</li>
+            <li>Вернувшимся — повод: «снова с Валерией».</li>
+          </ul></dd></div>
+          <div class="frow"><dt>Что ожидаем</dt><dd>Заявки «хочу к …» и рост повторных броней.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section id="f3">
+  <div class="wrap">
+    <div class="finding">
+      <figure class="shot reveal left">
+        <div class="shotimg"><img src="img/popup.jpg" alt="Попап тура Турция, Фетхие: маршрут на карте, виза, аэропорт, что включено, что отдельно" width="1512" height="982"><span class="tag reveal down" style="--d:470ms;left:11%;top:6%">попап · у него нет своего адреса</span><span class="mark reveal scale" style="--d:350ms;left:11%;top:70%;width:52%;height:24%"></span><span class="tag reveal down" style="--d:470ms;left:11%;top:65%">виза · аэропорт · что включено · что отдельно</span></div>
+        <figcaption>Попап «Подробнее о путешествии»: лучший контент сайта. Не индексируется, не шарится, не открывается по ссылке.</figcaption>
+      </figure>
+      <div class="fbody reveal up" style="--d:120ms">
+        <h2 class="reveal up">Лучший контент заперт в попапах, а табы прячут 11 из 15</h2>
+        <dl class="fgrid">
+          <div class="frow"><dt>Что вижу</dt><dd>В попапе тура — маршрут по дням, виза, аэропорты, что включено, что взять. У попапа нет адреса: не найти в поиске, не отправить подруге, не привести рекламу. Табы показывают 4 направления из 15.</dd></div>
+          <div class="frow"><dt>Чего стоит</dt><dd>Сторис и реклама ведут на общую главную. Поиск по «яхтинг для девушек» проходит мимо. 11 направлений видят только те, кто переключил вкладку.</dd></div>
+          <div class="frow"><dt>Что делаем</dt><dd><ul>
+            <li>Каждое направление — своя страница. Тексты уже написаны.</li>
+            <li>Все 15 сразу, вместо табов — фильтр: <span class="pills"><span class="pill">без визы</span><span class="pill">сезон</span><span class="pill">опыт</span><span class="pill">капитан</span></span></li>
+            <li>Из сторис — ссылка на страницу тура, не на главную.</li>
+          </ul></dd></div>
+          <div class="frow"><dt>Что ожидаем</dt><dd>Поисковый трафик на страницы туров, заявки с указанным направлением.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 -->
+<section id="f4">
+  <div class="wrap">
+    <div class="finding">
+      <figure class="shot reveal left">
+        <div class="shotimg"><img src="img/home.jpg" alt="Первый экран сайта с меню" width="1512" height="982"><span class="mark reveal scale" style="--d:350ms;left:83%;top:3%;width:15%;height:6%"></span><span class="tag reveal down" style="--d:470ms;left:52%;top:10%">клик ничего не делает</span></div>
+        <figcaption>Проверены все ссылки на пяти страницах. Меню, Instagram и телефон — три самых заметных места, где новичок нажимает и ничего не происходит.</figcaption>
+      </figure>
+      <div class="fbody reveal up" style="--d:120ms">
+        <h2 class="reveal up">Меню и ссылки не работают</h2>
+        <dl class="fgrid">
+          <div class="frow"><dt>Что вижу</dt><dd>Десять пунктов меню ведут на якоря, которых на странице нет: «Контакты», «Мерч», «О нас», «Q&amp;A» на главной и шесть пунктов на странице школы. Instagram в футере — на <code>@seagirl.club</code>, а профиль — <code>@seagirls.club</code>. Телефон показывает +7 995…, а звонит на +7 993…. Ссылка «Турция, Фетхие» ведёт в редактор Tilda.</dd></div>
+          <div class="frow"><dt>Чего стоит</dt><dd>Это первое, что нажимает новый человек. Два-три мёртвых клика — и вывод «сайт сломан», ещё до того, как он дочитал до цен.</dd></div>
+          <div class="frow"><dt>Что делаем</dt><dd><ul>
+            <li>Меню: каждому пункту — существующий блок или страница.</li>
+            <li>Instagram — на @seagirls.club, телефон — один и тот же в тексте и в ссылке.</li>
+            <li>Ссылку карточки — на страницу тура, не в редактор.</li>
+          </ul></dd></div>
+          <div class="frow"><dt>Что ожидаем</dt><dd>Ноль мёртвых кликов. Переходы в Instagram и звонки с сайта начнут считаться.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 08 -->
+<section id="ba">
+  <div class="wrap">
+    <h2>Та же главная, другой порядок</h2>
+    <div class="batable reveal">
+      <div class="hd"><div>Главная сегодня</div><div class="arrow">→</div><div>Главная после</div></div>
+      <div class="row"><div class="was">Первый экран без единого факта о формате</div><div class="mid">→</div><div class="now">Первый экран + одна строка: неделя, 8–10 девушек, капитан-женщина</div></div>
+      <div class="row same"><div class="was">«sail like a girl» и карусель</div><div class="mid">=</div><div class="now">Остаются — это настроение и бренд</div></div>
+      <div class="row"><div class="was">Нигде не сказано, для кого это и нужен ли опыт</div><div class="mid">→</div><div class="now">«Первый раз? Начни с Турции» — пять ответов новичку, сразу после манифеста</div></div>
+      <div class="row"><div class="was">Капитаны на 7-м экране, ниже формы</div><div class="mid">→</div><div class="now">Капитаны на 2-м экране: лицо, мили, фраза</div></div>
+      <div class="row"><div class="was">FAQ на 11-м экране, после мерча</div><div class="mid">→</div><div class="now">Четыре главных страха — рядом с первым экраном</div></div>
+      <div class="row"><div class="was">Правила оплаты в четырёх местах, возврат спрятан</div><div class="mid">→</div><div class="now">Один блок: что входит, как оплатить, как вернуть</div></div>
+      <div class="row"><div class="was">Табы: видно 4 направления из 15</div><div class="mid">→</div><div class="now">Все 15 сразу + фильтр <span class="pills"><span class="pill">без визы</span><span class="pill">сезон</span><span class="pill">опыт</span><span class="pill">капитан</span></span></div></div>
+      <div class="row same"><div class="was">Как мы живём на яхте · отзывы</div><div class="mid">=</div><div class="now">Остаются как есть</div></div>
+      <div class="row"><div class="was">Форма: четыре контакта, без даты, без «что дальше»</div><div class="mid">→</div><div class="now">Заявка: направление, даты, один контакт, «что будет дальше»</div></div>
+      <div class="row"><div class="was">Клуб капитанов и школа перебивают путь новичка</div><div class="mid">→</div><div class="now">Один спокойный вход «хочу научиться сама» → школа</div></div>
+      <div class="row"><div class="was">Мерч — 2,7 экрана между капитанами и FAQ</div><div class="mid">→</div><div class="now">Мерч на своей странице, ссылка в меню и футере</div></div>
+    </div>
+    <div class="batotals reveal up" style="--d:450ms">
+      <div>11,7 экрана · до формы <b>5,3</b></div><div class="mid"></div><div>≈ 8 экранов · до заявки <b>≈ 3</b>, и с ответами</div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 -->
+<section id="plan">
+  <div class="wrap">
+    <h2>Три шага за пять рабочих дней</h2>
+        <div class="waves">
+      <div class="wave reveal up" style="--d:0ms"><span class="step">Шаг 1</span><span class="n">1 <small>день</small></span><b>Скорость + аналитика + быстрые победы</b><p>Видео на сайт вместо Dropbox, сжать картинки, ленивая загрузка (находка 1). Аналитику ставлю я: Метрика, GA4, цели на форму и оплату, UTM. Шрифты, опечатки, дубли, битые ссылки, «оплата не прошла», разметка для поиска.</p></div>
+      <div class="wave reveal up" style="--d:100ms"><span class="step">Шаг 2</span><span class="n">2 <small>дня</small></span><b>Главная в новом порядке</b><p>Блок для новичка, капитаны наверх, что входит в цену, все направления с фильтром без табов, мерч на отдельную страницу, форма с датой.</p></div>
+      <div class="wave reveal up" style="--d:200ms"><span class="step">Шаг 3</span><span class="n">2 <small>дня</small></span><b>Страницы направлений и капитанов</b><p>15 страниц из готовых текстов попапов, блок капитана на каждой, страницы капитанов, оплата в оформлении сайта.</p></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- appendix -->
+<section id="appx" class="appx">
+  <div class="wrap">
+    <h2>27 находок по приоритету</h2>
+    <div class="tblwrap"><table>
+      <thead><tr><th>#</th><th>Находка</th><th>Где</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sev s1"></span>1</td><td>Главная — каталог без истории: с Instagram сразу в 15 направлений</td><td>главная</td></tr>
+        <tr><td><span class="sev s1"></span>2</td><td>«Капитаны — девушки» — только в одном отзыве и на 7-м экране</td><td>главная</td></tr>
+        <tr><td><span class="sev s1"></span>3</td><td>Содержание тура в попапе — не индексируется, не шарится, не видно с рекламы</td><td>попапы</td></tr>
+        <tr><td><span class="sev s1"></span>4</td><td>Табы прячут 11 направлений из 15</td><td>главная</td></tr>
+        <tr><td><span class="sev s1"></span>5</td><td>/prepayment без контекста, курс руками, /sorry без выхода, возврат спрятан</td><td>оплата</td></tr>
+        <tr><td><span class="sev s1"></span>6</td><td>Видео первого экрана (.mov на Dropbox, временная ссылка) отдаёт 404; плюс 190 картинок на 122 МБ — у новых пользователей пустой экран или ошибка</td><td>главная, мобильная</td></tr>
+        <tr><td><span class="sev s2"></span>7</td><td>Форма без даты и без «что дальше»; четыре контактных поля; лишние направления</td><td>форма</td></tr>
+        <tr><td><span class="sev s2"></span>8</td><td>Правила оплаты в четырёх местах</td><td>везде</td></tr>
+        <tr><td><span class="sev s2"></span>9</td><td>«Бортовые расходы входят» на карточке, «еда отдельно» — только в попапе: что входит, видно не сразу</td><td>карточки</td></tr>
+        <tr><td><span class="sev s2"></span>10</td><td>Не сказано: нужен ли опыт, возраст, плавать, можно ли одной</td><td>главная</td></tr>
+        <tr><td><span class="sev s2"></span>11</td><td>Мерч — 2,7 экрана между капитанами и FAQ</td><td>главная</td></tr>
+        <tr><td><span class="sev s2"></span>12</td><td>Клуб капитанов и обучение перебивают путь новичка</td><td>главная</td></tr>
+        <tr><td><span class="sev s2"></span>13</td><td>«Предложение ограничено, другие скидки не применяются» × 21</td><td>карточки</td></tr>
+        <tr><td><span class="sev s3"></span>14</td><td>Весь сайт капсом — следствие бага шрифтов (Script под именем Inter)</td><td>везде</td></tr>
+        <tr><td><span class="sev s3"></span>15</td><td>Дубли и несостыковки: отзыв ×3, инструктор ×3, телефоны, годы, «дрегие»</td><td>школа, главная</td></tr>
+        <tr><td><span class="sev s3"></span>16</td><td>FAQ на 11-м экране после мерча</td><td>главная</td></tr>
+        <tr><td><span class="sev s3"></span>17</td><td>Вёрстка: «Сейшелы» между датами и ценами Мармариса</td><td>карточки</td></tr>
+        <tr><td><span class="sev s1"></span>18</td><td>Аналитики нет: ни GA, ни GTM, ни Метрики, ни пикселей — только счётчик Tilda</td><td>техника</td></tr>
+        <tr><td><span class="sev s3"></span>19</td><td>SEO: 184 h2, lang, canonical http, /when 404, description</td><td>техника</td></tr>
+        <tr><td><span class="sev s3"></span>20</td><td>Cormorant подключён и не используется — блокирует отрисовку</td><td>техника</td></tr>
+        <tr><td><span class="sev s3"></span>21</td><td>Опечатка 'Sctipt' → текст падает на Arial</td><td>техника</td></tr>
+        <tr><td><span class="sev s3"></span>22</td><td>Cormorant и лишние скрипты блокируют первую отрисовку</td><td>техника</td></tr>
+        <tr><td><span class="sev s3"></span>23</td><td>Нельзя дать ссылку «сразу на запись в Турцию»: форма — попап без адреса, оплата — общая страница без выбора тура. Из сторис и рекламы всё ведёт на главную</td><td>техника</td></tr>
+        <tr><td><span class="sev s2"></span>24</td><td>Instagram в футере — на несуществующий @seagirl.club вместо @seagirls.club</td><td>футер</td></tr>
+        <tr><td><span class="sev s2"></span>25</td><td>10 пунктов меню ведут на якоря, которых нет: Контакты, Мерч, О нас, Q&amp;A на главной; Теория, Практика, Экзамен ×2, Инструктор, Сертификат на /school</td><td>меню</td></tr>
+        <tr><td><span class="sev s2"></span>26</td><td>Телефон в футере показывает +7 995 790 06 35, а звонит на +7 993 270 06 35; номер +7 903 разбит на два элемента</td><td>футер</td></tr>
+        <tr><td><span class="sev s3"></span>27</td><td>Ссылка «Турция, Фетхие» ведёт на tilda.ru/page/?pageid=… — страница редактора, 404</td><td>карточки</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<section id="analogs" class="appx">
+  <div class="wrap">
+    <h2>Аналоги: как устроен выбор тура</h2>
+    <p><b>Yacht Week</b> (смешанные группы, Хорватия, Греция, Сардиния): направление → неделя → категория лодки — Classic / Premium Monohull, Classic / Premium Catamaran, от 719 € за место. Бронь каютой или целой яхтой. Соло — место в двухместной каюте (только Греция и Хорватия) или каюта целиком. Смена даты бесплатно за 90 дней, отмена без вопросов в первые 24 часа, передать место другому — бесплатно.</p>
+    <p><b>Solo Female Travelers Club</b> (женский премиум, Хорватия, 48-метровая яхта на 30 человек): от 4 395 € за место в двухместной каюте, 6 995 € за одноместную. Едешь одна — подбирают соседку без доплаты. Список «включено» расписан до строчки «портовые сборы — 60 € с человека»; отдельно — перелёт, трансфер, виза, страховка, чаевые.</p>
+    <p><b>Yacht IBIS</b> (Сен-Мартен, Карибы): женские недели с капитаном-женщиной, до 5 гостей на лодке, все уровни опыта вместе; выбор — по дате и направлению. <b>Second Star Sailing</b> (Антигуа): программы Women at the Helm с женщинами-капитанами, но и смешанные тоже; упор на курсы RYA.</p>
+    <p>Это аналоги, а не прямые конкуренты за русскоязычную аудиторию — у них другой рынок и цены. Что важно для нас: у SeaGirls выбор идёт по одной оси — «куда». У аналогов добавляются неделя, тип лодки и каюты, соседка для соло, честный список «что включено». Выбора по капитану нет ни у кого.</p>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <p class="eyebrow">Продуктовый дизайнер</p>
+    <h2 class="name reveal up">Василиса Медведева</h2>
+    <div class="row">
+      <a class="btn" href="#" data-todo="telegram">Написать в Telegram</a>
+      <a class="btn" href="#" data-todo="portfolio">Портфолио</a>
+    </div>
+  </div>
+</section>
+
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+  },{rootMargin:'0px 0px -10% 0px',threshold:0.12});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>
